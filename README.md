@@ -5,11 +5,13 @@ deeply nested structs.
 
 ## Installation
 
+Add pigeon as a `mix.exs` dependency:
 ```elixir
 def deps do
   [{:pane, "~> 0.1.0"}]
 end
 ```
+
 ## Usage
 
     iex> data =  File.read!("mix.exs") # Or some other really long string
