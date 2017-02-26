@@ -3,10 +3,11 @@ defmodule Pane do
   Documentation for Pane.
   """
 
-  def console(data) do
+  def console(data) when is_binary(data) do
     Pane.Viewer.start_link(data: data)
     recv_input()
   end
+  def console(data), do: data |> inspect(pretty: true) |> console()
 
   def recv_input do
     IEx.Helpers.clear
