@@ -5,7 +5,7 @@ deeply nested structs.
 
 ## Installation
 
-Add pigeon as a `mix.exs` dependency:
+Add pane as a `mix.exs` dependency:
 ```elixir
 def deps do
   [{:pane, "~> 0.1.0"}]

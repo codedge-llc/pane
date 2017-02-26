@@ -4,6 +4,8 @@ defmodule Pane.Mixfile do
   def project do
     [app: :pane,
      name: "Pane",
+     description: description(),
+     package: package(),
      version: "0.1.0",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
