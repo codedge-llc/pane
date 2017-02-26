@@ -20,7 +20,9 @@ defmodule Pane do
     case input do
       "j\n" -> Pane.Viewer.next_page
       "k\n" -> Pane.Viewer.prev_page
-      "q\n" -> Pane.Viewer.stop
+      "q\n" ->
+        Pane.Viewer.stop
+        IEx.Helpers.clear
     end
 
     if input != "q\n" do recv_input() else :ok end
