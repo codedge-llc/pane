@@ -15,7 +15,7 @@ end
     iex> data =  File.read!("mix.exs") # Or some other really long string
     iex> Pane.console(data)
 
-![console](/docs/console.png)
+![console](https://raw.githubusercontent.com/codedge-llc/pane/master/docs/console.png)
 
 ## Available Commands
 * `j` - Next page
