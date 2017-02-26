@@ -7,6 +7,8 @@ defmodule Pane.Viewer do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
+  def stop, do: GenServer.stop(__MODULE__)
+
   def init(opts) do
     pages = opts[:data] |> Pane.Page.paginate(max_lines() - 2)
     {:ok, %__MODULE__{
