@@ -3,6 +3,20 @@ defmodule Pane.Page do
 
   @max_lines 50
 
+  @type t :: %__MODULE__{
+    data: String.t,
+    index: pos_integer
+  }
+
+  @doc ~S"""
+  Constructs new `Pane.Page` given data and index.
+
+  ## Examples
+
+      iex> Pane.Page.new("test", 1)
+      %Pane.Page{data: "test", index: 1}
+  """
+  @spec new(String.t, pos_integer) :: t
   def new(data, index) do
     %__MODULE__{
       data: data,
@@ -15,18 +29,13 @@ defmodule Pane.Page do
 
   ## Examples
 
-    iex> Enum.join(1..100, "\n") |> Pane.Page.paginate
-    [%Pane.Page{data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
-       "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24",
-       "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37",
-       "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50"],
-      index: 0},
-     %Pane.Page{data: ["51", "52", "53", "54", "55", "56", "57", "58", "59", "60",
-       "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73",
-       "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86",
-       "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"],
-      index: 1}]
+      iex> [p1] = Enum.join(1..4, "\n") |> Pane.Page.paginate
+      iex> p1.index
+      0
+      iex> p1.data
+      "1\n2\n3\n4"
   """
+  @spec paginate(String.t, pos_integer) :: [t]
   def paginate(data, max_lines \\ @max_lines) do
     data
     |> String.split("\n")
