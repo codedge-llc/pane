@@ -40,6 +40,7 @@ defmodule Pane do
       "q\n" ->
         Pane.Viewer.stop
         IEx.Helpers.clear
+      _ -> Pane.Viewer.current_page
     end
 
     if input != "q\n" do recv_input() else :ok end
