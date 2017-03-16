@@ -2,7 +2,7 @@
 [![Deps Status](https://beta.hexfaktor.org/badge/all/github/codedge-llc/pane.svg)](https://beta.hexfaktor.org/github/codedge-llc/pane)
 
 # Pane
-Paginated data viewer for IEx. Useful for inspecting large collections and
+Paginated data viewer for IEx. Written for [scribe](https://github.com/codedge-llc/scribe). Useful for inspecting large collections and
 deeply nested structs.
 
 
