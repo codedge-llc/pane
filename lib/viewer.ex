@@ -1,19 +1,49 @@
 defmodule Pane.Viewer do
-  defstruct pages: [], index: 0
+  @moduledoc false
+
+  defstruct pages: [], total_pages: 0, index: 0
 
   use GenServer
 
+  @doc ~S"""
+  Starts a `Pane.Viewer` with given opts.
+
+
+  ## Examples
+
+      iex> {:ok, pid} = Pane.Viewer.start_link(data: "test")
+      iex> is_pid(pid)
+      true
+  """
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
   def stop, do: GenServer.stop(__MODULE__)
 
+  @doc ~S"""
+  Returns a `Pane.Viewer` struct with given opts.
+
+  ## Examples
+
+      iex> Pane.Viewer.init(data: "test")
+      {:ok, %Pane.Viewer{
+        index: 0,
+        total_pages: 1,
+        pages: [
+          %Pane.Page{
+            data: "test",
+            index: 0
+          }
+        ]
+      }}
+  """
   def init(opts) do
     pages = opts[:data] |> Pane.Page.paginate(max_lines() - 2)
     {:ok, %__MODULE__{
       index: 0,
-      pages: pages 
+      total_pages: Enum.count(pages),
+      pages: pages
     }}
   end
 
@@ -51,21 +81,19 @@ defmodule Pane.Viewer do
 
   def last_page_index(state), do: Enum.count(state.pages) - 1
 
-  def inc_page(state) do
-    cond do
-      state.index < last_page_index(state) -> %{state | index: state.index + 1}
-      true -> state
-    end
+  def inc_page(%{index: i, total_pages: total} = state) when i < total - 1 do
+    %{state | index: state.index + 1}
   end
+  def inc_page(state), do: state
 
-  def dec_page(state) do
-    cond do
-      state.index > 0 -> %{state | index: state.index - 1}
-      true -> state
-    end
+  def dec_page(%{index: i} = state) when i > 0 do
+    %{state | index: i - 1}
   end
+  def dec_page(state), do: state
 
-  def page_description(state), do: "#{state.index + 1} of #{last_page_index(state) + 1}"
+  def page_description(state) do
+    "#{state.index + 1} of #{last_page_index(state) + 1}"
+  end
 
   def prompt(state), do: "[#{page_description(state)}] (j)next (k)prev (q)quit "
 

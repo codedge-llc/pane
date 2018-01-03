@@ -1,4 +1,6 @@
 defmodule Pane.Page do
+  @moduledoc false
+
   defstruct data: nil, index: nil
 
   @max_lines 50
