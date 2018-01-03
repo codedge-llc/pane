@@ -30,7 +30,7 @@ defmodule Pane.Mixfile do
 
   defp description do
     """
-    Paginated printer for IEx.
+    Paginated printer for IEx
     """
   end
 

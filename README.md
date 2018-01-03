@@ -11,7 +11,7 @@ deeply nested structs.
 Add pane as a `mix.exs` dependency:
 ```elixir
 def deps do
-  [{:pane, "~> 0.1.0"}]
+  [{:pane, "~> 0.2.0"}]
 end
 ```
 
