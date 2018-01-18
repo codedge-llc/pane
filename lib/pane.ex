@@ -53,6 +53,16 @@ defmodule Pane do
     process(input)
   end
 
+  defp process("f\n") do
+    Pane.Viewer.first_page()
+    recv_input()
+  end
+
+  defp process("l\n") do
+    Pane.Viewer.last_page()
+    recv_input()
+  end
+
   defp process("j\n") do
     Pane.Viewer.next_page()
     recv_input()

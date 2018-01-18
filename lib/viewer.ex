@@ -50,6 +50,10 @@ defmodule Pane.Viewer do
     {:ok, state}
   end
 
+  def first_page, do: GenServer.call(__MODULE__, :first_page)
+
+  def last_page, do: GenServer.call(__MODULE__, :last_page)
+
   def next_page, do: GenServer.call(__MODULE__, :next_page)
 
   def prev_page, do: GenServer.call(__MODULE__, :prev_page)
@@ -57,6 +61,22 @@ defmodule Pane.Viewer do
   def current_page, do: GenServer.call(__MODULE__, :current_page)
 
   def prompt, do: GenServer.call(__MODULE__, :prompt)
+
+  def handle_call(:first_page, _from, state) do
+    state = %{state | index: 0}
+    current = current_page(state)
+    IO.puts(current.data)
+
+    {:reply, current, state}
+  end
+
+  def handle_call(:last_page, _from, state) do
+    state = %{state | index: last_page_index(state)}
+    current = current_page(state)
+    IO.puts(current.data)
+
+    {:reply, current, state}
+  end
 
   def handle_call(:next_page, _from, state) do
     state = inc_page(state)
@@ -100,7 +120,9 @@ defmodule Pane.Viewer do
     "#{state.index + 1} of #{last_page_index(state) + 1}"
   end
 
-  def prompt(state), do: "[#{page_description(state)}] (j)next (k)prev (q)quit "
+  def prompt(state) do
+    "[#{page_description(state)}] (j)next (k)prev (f)first (l)last (q)quit "
+  end
 
   def max_lines do
     case System.cmd("tput", ["lines"]) do
