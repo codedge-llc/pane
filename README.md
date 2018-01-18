@@ -25,4 +25,6 @@ end
 ## Available Commands
 * `j` - Next page
 * `k` - Previous page
+* `f` - First page
+* `l` - Last page
 * `q` - Quit
