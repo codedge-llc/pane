@@ -40,11 +40,14 @@ defmodule Pane.Viewer do
   """
   def init(opts) do
     pages = opts[:data] |> Pane.Page.paginate(max_lines() - 2)
-    {:ok, %__MODULE__{
+
+    state = %__MODULE__{
       index: 0,
       total_pages: Enum.count(pages),
       pages: pages
-    }}
+    }
+
+    {:ok, state}
   end
 
   def next_page, do: GenServer.call(__MODULE__, :next_page)
@@ -84,11 +87,13 @@ defmodule Pane.Viewer do
   def inc_page(%{index: i, total_pages: total} = state) when i < total - 1 do
     %{state | index: state.index + 1}
   end
+
   def inc_page(state), do: state
 
   def dec_page(%{index: i} = state) when i > 0 do
     %{state | index: i - 1}
   end
+
   def dec_page(state), do: state
 
   def page_description(state) do
@@ -99,7 +104,7 @@ defmodule Pane.Viewer do
 
   def max_lines do
     case System.cmd("tput", ["lines"]) do
-      {count, 0} -> count |> String.trim |> String.to_integer
+      {count, 0} -> count |> String.trim() |> String.to_integer()
     end
   end
 end

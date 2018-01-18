@@ -20,10 +20,11 @@ defmodule Pane do
   Paginates data and starts a pseudo-interactive console.
   """
   def console(data) when is_binary(data) do
-    if IO.ANSI.enabled? do
+    if IO.ANSI.enabled?() do
       start_and_recv(data)
     else
       prompt = "Pane requires ANSI escape codes to work. Enable? (Yn) "
+
       case IO.gets(prompt) do
         "Y" <> _rest -> enable_ansi_and_start(data)
         "y" <> _rest -> enable_ansi_and_start(data)
@@ -31,6 +32,7 @@ defmodule Pane do
       end
     end
   end
+
   def console(data), do: data |> inspect(pretty: true) |> console()
 
   defp enable_ansi_and_start(data) do
@@ -44,28 +46,31 @@ defmodule Pane do
   end
 
   defp recv_input do
-    IEx.Helpers.clear
-    IO.puts Pane.Viewer.current_page.data
+    IEx.Helpers.clear()
+    IO.puts(Pane.Viewer.current_page().data)
 
-    input = <<"\n", Pane.Viewer.prompt::binary>> |> IO.gets
+    input = <<"\n", Pane.Viewer.prompt()::binary>> |> IO.gets()
     process(input)
   end
 
   defp process("j\n") do
-    Pane.Viewer.next_page
+    Pane.Viewer.next_page()
     recv_input()
   end
+
   defp process("k\n") do
-    Pane.Viewer.prev_page
+    Pane.Viewer.prev_page()
     recv_input()
   end
+
   defp process("q\n") do
-    Pane.Viewer.stop
-    IEx.Helpers.clear
+    Pane.Viewer.stop()
+    IEx.Helpers.clear()
     :ok
   end
+
   defp process(_else) do
-    Pane.Viewer.current_page
+    Pane.Viewer.current_page()
     recv_input()
   end
 end

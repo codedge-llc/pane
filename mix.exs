@@ -2,18 +2,19 @@ defmodule Pane.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :pane,
-     name: "Pane",
-     description: description(),
-     package: package(),
-     version: "0.2.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     docs: [main: "readme",
-            extras: ["README.md"]],
-     test_coverage: [tool: ExCoveralls],
-     deps: deps()]
+    [
+      app: :pane,
+      name: "Pane",
+      description: description(),
+      package: package(),
+      version: "0.2.0",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      docs: [main: "readme", extras: ["README.md"]],
+      test_coverage: [tool: ExCoveralls],
+      deps: deps()
+    ]
   end
 
   def application do
@@ -36,10 +37,10 @@ defmodule Pane.Mixfile do
 
   defp package do
     [
-       files: ["lib", "mix.exs", "README*", "LICENSE*"],
-       maintainers: ["Henry Popp"],
-       licenses: ["MIT"],
-       links: %{"GitHub" => "https://github.com/codedge-llc/pane"}
+      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      maintainers: ["Henry Popp"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/codedge-llc/pane"}
     ]
   end
 end
