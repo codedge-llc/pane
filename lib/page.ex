@@ -41,7 +41,7 @@ defmodule Pane.Page do
   def paginate(data, max_lines \\ @max_lines) do
     data
     |> String.split("\n")
-    |> Enum.chunk(max_lines, max_lines, [])
+    |> Enum.chunk_every(max_lines)
     |> Enum.map(&Enum.join(&1, "\n"))
     |> Enum.with_index()
     |> Enum.map(fn {data, index} -> new(data, index) end)

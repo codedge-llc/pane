@@ -2,16 +2,19 @@
 [![Hex.pm](http://img.shields.io/hexpm/dt/pane.svg)](https://hex.pm/packages/pane)
 
 # Pane
+
 Paginated data viewer for IEx. Written for [scribe](https://github.com/codedge-llc/scribe). Useful for inspecting large collections and
 deeply nested structs.
-
 
 ## Installation
 
 Add pane as a `mix.exs` dependency:
+
 ```elixir
 def deps do
-  [{:pane, "~> 0.3.0"}]
+  [
+    {:pane, "~> 0.4.0"}
+  ]
 end
 ```
 
@@ -23,8 +26,9 @@ end
 ![console](https://raw.githubusercontent.com/codedge-llc/pane/master/docs/console.png)
 
 ## Available Commands
-* `j` - Next page
-* `k` - Previous page
-* `f` - First page
-* `l` - Last page
-* `q` - Quit
+
+- `j` - Next page
+- `k` - Previous page
+- `f` - First page
+- `l` - Last page
+- `q` - Quit

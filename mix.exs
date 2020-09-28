@@ -1,19 +1,27 @@
 defmodule Pane.Mixfile do
   use Mix.Project
 
+  @version "0.4.0"
+
   def project do
     [
       app: :pane,
-      name: "Pane",
-      description: description(),
-      package: package(),
-      version: "0.3.0",
-      elixir: "~> 1.4",
       build_embedded: Mix.env() == :prod,
-      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+      description: description(),
       docs: [main: "readme", extras: ["README.md"]],
+      elixir: "~> 1.4",
+      name: "Pane",
+      package: package(),
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
+      start_permanent: Mix.env() == :prod,
       test_coverage: [tool: ExCoveralls],
-      deps: deps()
+      version: @version
     ]
   end
 
@@ -23,9 +31,9 @@ defmodule Pane.Mixfile do
 
   defp deps do
     [
-      {:dogma, "~> 0.1", only: [:dev, :test]},
-      {:ex_doc, "~> 0.14", only: [:dev, :test]},
-      {:excoveralls, "~> 0.7", only: :test}
+      {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.7", only: :test},
+      {:ex_doc, "~> 0.14", only: [:dev, :test]}
     ]
   end
 
