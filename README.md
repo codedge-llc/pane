@@ -3,17 +3,17 @@
 
 # Pane
 
-Paginated data viewer for IEx. Written for [scribe](https://github.com/codedge-llc/scribe). Useful for inspecting large collections and
-deeply nested structs.
+Paginated data viewer for IEx. Written for [scribe](https://github.com/codedge-llc/scribe).
+Useful for inspecting large collections and deeply nested structs.
 
 ## Installation
 
-Add pane as a `mix.exs` dependency:
+Add `:pane` as a `mix.exs` dependency:
 
 ```elixir
 def deps do
   [
-    {:pane, "~> 0.4.0"}
+    {:pane, "~> 0.4.1"}
   ]
 end
 ```

@@ -1,9 +1,20 @@
 # Changelog
 
+## v0.4.1
+
+**Fixed**
+
+- Include `:iex` in `:extra_applications` to remove compile warning.
+
 ## v0.4.0
 
-- Remove deprecated compile warnings.
+**Changed**
+
 - Bump minimum Elixir version to 1.5.
+
+**Fixed**
+
+- Remove deprecated compile warnings.
 
 ## v0.3.0
 
