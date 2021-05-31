@@ -1,6 +1,7 @@
 defmodule Pane.Mixfile do
   use Mix.Project
 
+  @source_url "https://github.com/codedge-llc/pane"
   @version "0.4.1"
 
   def project do
@@ -8,7 +9,6 @@ defmodule Pane.Mixfile do
       app: :pane,
       build_embedded: Mix.env() == :prod,
       deps: deps(),
-      description: description(),
       dialyzer: dialyzer(),
       docs: docs(),
       elixir: "~> 1.5",
@@ -39,16 +39,18 @@ defmodule Pane.Mixfile do
     ]
   end
 
-  defp description do
-    """
-    Paginated printer for IEx
-    """
-  end
-
   defp docs do
     [
+      extras: [
+        "CHANGELOG.md",
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
       main: "readme",
-      extras: ["README.md"]
+      source_url: @source_url,
+      source_ref: "v#{@version}",
+      api_reference: false,
+      formatters: ["html"]
     ]
   end
 
@@ -60,10 +62,14 @@ defmodule Pane.Mixfile do
 
   defp package do
     [
-      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      description: "Paginated printer for IEx",
+      files: ["lib", "mix.exs", "README*", "LICENSE*", "CHANGELOG*"],
       maintainers: ["Henry Popp"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/codedge-llc/pane"}
+      links: %{
+        "Changelog" => "https://hexdocs.pm/pane/changelog.html",
+        "GitHub" => "https://github.com/codedge-llc/pane"
+      }
     ]
   end
 end
