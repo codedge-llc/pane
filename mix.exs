@@ -11,7 +11,7 @@ defmodule Pane.Mixfile do
       deps: deps(),
       dialyzer: dialyzer(),
       docs: docs(),
-      elixir: "~> 1.5",
+      elixir: "~> 1.13",
       name: "Pane",
       package: package(),
       preferred_cli_env: [
