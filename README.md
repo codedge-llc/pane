@@ -6,8 +6,8 @@
 [![CI](https://github.com/codedge-llc/pane/actions/workflows/ci.yml/badge.svg)](https://github.com/codedge-llc/pane/actions/workflows/ci.yml)
 [![Version](https://img.shields.io/hexpm/v/pane.svg)](https://hex.pm/packages/pane)
 [![Total Downloads](https://img.shields.io/hexpm/dt/pane.svg)](https://hex.pm/packages/pane)
-[![License](https://img.shields.io/hexpm/l/pane.svg)](https://github.com/codedge-llc/pane/blob/master/LICENSE)
-[![Last Updated](https://img.shields.io/github/last-commit/codedge-llc/pane.svg)](https://github.com/codedge-llc/pane/commits/master)
+[![License](https://img.shields.io/hexpm/l/pane.svg)](https://github.com/codedge-llc/pane/blob/main/LICENSE)
+[![Last Updated](https://img.shields.io/github/last-commit/codedge-llc/pane.svg)](https://github.com/codedge-llc/pane/commits/main)
 [![Documentation](https://img.shields.io/badge/documentation-gray)](https://hexdocs.pm/pane/)
 
 ## Installation
@@ -27,7 +27,7 @@ end
     iex> data =  File.read!("mix.exs") # Or some other really long string
     iex> Pane.console(data)
 
-![console](https://raw.githubusercontent.com/codedge-llc/pane/master/docs/console.png)
+![console](https://raw.githubusercontent.com/codedge-llc/pane/main/docs/console.png)
 
 ## Available Commands
 
@@ -57,4 +57,4 @@ Git commit subjects use the [Karma style](http://karma-runner.github.io/5.0/dev/
 
 Copyright (c) 2017-2024 Codedge LLC (https://www.codedge.io/)
 
-This library is MIT licensed. See the [LICENSE](https://github.com/codedge-llc/pane/blob/master/LICENSE) for details.
+This library is MIT licensed. See the [LICENSE](https://github.com/codedge-llc/pane/blob/main/LICENSE) for details.
