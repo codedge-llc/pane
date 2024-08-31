@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 **Changed**
 
-- Various documentation updates [#5](https://github.com/codedge-llc/pane/pull/5).
+- Various documentation updates ([#5](https://github.com/codedge-llc/pane/pull/5)).
 - Bumped minimum Elixir version to 1.13.
 
 ## v0.4.1 - 2021-02-27

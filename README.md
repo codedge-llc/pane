@@ -17,7 +17,7 @@ Add `:pane` as a `mix.exs` dependency:
 ```elixir
 def deps do
   [
-    {:pane, "~> 0.4.1"}
+    {:pane, "~> 0.5.0"}
   ]
 end
 ```
