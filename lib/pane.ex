@@ -5,20 +5,43 @@ defmodule Pane do
 
   ## Usage
 
-      iex> data =  File.read!("mix.exs") # Or some other really long string
-      iex> Pane.console(data)
+  ```
+  iex> data =  File.read!("mix.exs") # Or some other really long string
+  iex> Pane.console(data)
+  ```
 
-  ![console][/docs/console.png]
+  ```
+  defmodule Pane.Mixfile do
+  use Mix.Project
+
+  @source_url "https://github.com/codedge-llc/pane"
+  @version "0.5.0"
+
+  def project do
+    [
+      app: :pane,
+      build_embedded: Mix.env() == :prod,
+      deps: deps(),
+      dialyzer: dialyzer(),
+      docs: docs(),
+      elixir: "~> 1.13",
+      name: "Pane",
+
+  [1 of 5] (j)next (k)prev (f)first (l)last (q)quit
+  ```
 
   ## Available Commands
   * `j` - Next page
   * `k` - Previous page
+  * `f` - First page
+  * `l` - Last page
   * `q` - Quit
   """
 
   @doc ~S"""
   Paginates data and starts a pseudo-interactive console.
   """
+  @spec console(any) :: no_return
   def console(data) when is_binary(data) do
     if IO.ANSI.enabled?() do
       start_and_recv(data)
