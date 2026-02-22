@@ -1,14 +1,14 @@
 defmodule Pane.Viewer do
   @moduledoc false
 
-  defstruct pages: [], total_pages: 0, index: 0
+  defstruct index: 0, pages: [], total_pages: 0
 
   use GenServer
 
   @type t :: %__MODULE__{
+          index: non_neg_integer(),
           pages: [Pane.Page.t()],
-          total_pages: non_neg_integer(),
-          index: non_neg_integer()
+          total_pages: non_neg_integer()
         }
 
   @default_max_lines 50
@@ -39,13 +39,13 @@ defmodule Pane.Viewer do
       iex> Pane.Viewer.init(data: "test")
       {:ok, %Pane.Viewer{
         index: 0,
-        total_pages: 1,
         pages: [
           %Pane.Page{
             data: "test",
             index: 0
           }
-        ]
+        ],
+        total_pages: 1
       }}
   """
   def init(opts) do
