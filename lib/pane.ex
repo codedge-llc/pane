@@ -41,7 +41,7 @@ defmodule Pane do
   @doc ~S"""
   Paginates data and starts a pseudo-interactive console.
   """
-  @spec console(any) :: :ok
+  @spec console(any()) :: :ok
   def console(data) when is_binary(data) do
     if IO.ANSI.enabled?() do
       start_and_recv(data)

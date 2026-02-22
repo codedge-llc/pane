@@ -7,9 +7,11 @@ defmodule Pane.Viewer do
 
   @type t :: %__MODULE__{
           pages: [Pane.Page.t()],
-          total_pages: non_neg_integer,
-          index: non_neg_integer
+          total_pages: non_neg_integer(),
+          index: non_neg_integer()
         }
+
+  @default_max_lines 50
 
   @doc ~S"""
   Starts a `Pane.Viewer` with given opts.
@@ -21,7 +23,7 @@ defmodule Pane.Viewer do
       iex> is_pid(pid)
       true
   """
-  @spec start_link(keyword) :: GenServer.on_start()
+  @spec start_link(keyword()) :: GenServer.on_start()
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
@@ -114,33 +116,41 @@ defmodule Pane.Viewer do
 
   def handle_call(:prompt, _from, state), do: {:reply, prompt(state), state}
 
+  @spec current_page(t()) :: Pane.Page.t()
   def current_page(state), do: Enum.at(state.pages, state.index)
 
+  @spec last_page_index(t()) :: non_neg_integer()
   def last_page_index(state), do: Enum.count(state.pages) - 1
 
+  @spec inc_page(t()) :: t()
   def inc_page(%{index: i, total_pages: total} = state) when i < total - 1 do
     %{state | index: state.index + 1}
   end
 
   def inc_page(state), do: state
 
+  @spec dec_page(t()) :: t()
   def dec_page(%{index: i} = state) when i > 0 do
     %{state | index: i - 1}
   end
 
   def dec_page(state), do: state
 
+  @spec page_description(t()) :: String.t()
   def page_description(state) do
     "#{state.index + 1} of #{last_page_index(state) + 1}"
   end
 
+  @spec prompt(t()) :: String.t()
   def prompt(state) do
     "[#{page_description(state)}] (j)next (k)prev (f)first (l)last (q)quit "
   end
 
+  @spec max_lines :: pos_integer()
   def max_lines do
-    case System.cmd("tput", ["lines"]) do
-      {count, 0} -> count |> String.trim() |> String.to_integer()
+    case :io.rows() do
+      {:ok, rows} -> rows
+      {:error, _} -> @default_max_lines
     end
   end
 end
