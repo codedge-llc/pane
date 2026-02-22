@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 **Fixed**
 
 - Terminal size detection on Windows (replaced `tput` with `:io.rows/0`).
-  ([#11](https://github.com/codedge-llc/pane/pull/11)
+  ([#11](https://github.com/codedge-llc/pane/pull/11))
 
 ## v0.5.0 - 2024-08-31
 
