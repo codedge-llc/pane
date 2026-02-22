@@ -5,6 +5,12 @@ defmodule Pane.Viewer do
 
   use GenServer
 
+  @type t :: %__MODULE__{
+          pages: [Pane.Page.t()],
+          total_pages: non_neg_integer,
+          index: non_neg_integer
+        }
+
   @doc ~S"""
   Starts a `Pane.Viewer` with given opts.
 
@@ -15,10 +21,12 @@ defmodule Pane.Viewer do
       iex> is_pid(pid)
       true
   """
+  @spec start_link(keyword) :: GenServer.on_start()
   def start_link(opts \\ []) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
+  @spec stop :: :ok
   def stop, do: GenServer.stop(__MODULE__)
 
   @doc ~S"""
@@ -50,16 +58,22 @@ defmodule Pane.Viewer do
     {:ok, state}
   end
 
+  @spec first_page :: Pane.Page.t()
   def first_page, do: GenServer.call(__MODULE__, :first_page)
 
+  @spec last_page :: Pane.Page.t()
   def last_page, do: GenServer.call(__MODULE__, :last_page)
 
+  @spec next_page :: Pane.Page.t()
   def next_page, do: GenServer.call(__MODULE__, :next_page)
 
+  @spec prev_page :: Pane.Page.t()
   def prev_page, do: GenServer.call(__MODULE__, :prev_page)
 
+  @spec current_page :: Pane.Page.t()
   def current_page, do: GenServer.call(__MODULE__, :current_page)
 
+  @spec prompt :: String.t()
   def prompt, do: GenServer.call(__MODULE__, :prompt)
 
   def handle_call(:first_page, _from, state) do
