@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+**Added**
+
+- Better documented typespecs. ([#11](https://github.com/codedge-llc/pane/pull/11))
+- More tests for `Pane.Page` and `Pane.Viewer`. ([#11](https://github.com/codedge-llc/pane/pull/11))
+
+**Fixed**
+
+- Terminal size detection on Windows (replaced `tput` with `:io.rows/0`).
+  ([#11](https://github.com/codedge-llc/pane/pull/11)
+
 ## v0.5.0 - 2024-08-31
 
 **Changed**
